@@ -1,6 +1,7 @@
 ﻿using CsvHelper.Configuration;
+using Gemicle_Test.Model;
 
-namespace Gemicle_Test.Model
+namespace Gemicle_Test.Map
 {
     public class CustomerMap : ClassMap<Customer>
     {
