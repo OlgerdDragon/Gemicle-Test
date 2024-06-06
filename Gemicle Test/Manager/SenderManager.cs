@@ -11,7 +11,23 @@ namespace Gemicle_Test.Manager
     {
         private CancellationTokenSource _cancellationTokenSource;
 
-        public async Task Start(CancellationToken cancellationToken)
+        public async Task Start()
+        {
+            var cancellationTokenSource = new CancellationTokenSource();
+            var cancellationToken = cancellationTokenSource.Token;
+
+            var task = StartInternal(cancellationToken);
+
+            Console.WriteLine("!!! Press any key to stop sending !!!");
+            Console.ReadKey();
+
+            await Stop();
+            await task;
+
+            Console.WriteLine("Sending stopped.");
+        }
+
+        private async Task StartInternal(CancellationToken cancellationToken)
         {
             _cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             var token = _cancellationTokenSource.Token;
@@ -31,7 +47,7 @@ namespace Gemicle_Test.Manager
             }
         }
 
-        public Task Stop()
+        private Task Stop()
         {
             _cancellationTokenSource?.Cancel();
             return Task.CompletedTask;
