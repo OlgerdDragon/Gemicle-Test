@@ -119,7 +119,20 @@ namespace Gemicle_Test.Command
 
         private string GetTemplateFilePath(string templateName)
         {
-           
+            var templateFiles = Directory.GetFiles(resourcePath);
+            var normalizedTemplateName = Regex.Replace(templateName, @"\s+", "").ToLower();
+
+            foreach (var file in templateFiles)
+            {
+                var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file).ToLower();
+                var normalizedFileName = Regex.Replace(fileNameWithoutExtension, @"\s+", "");
+
+                if (normalizedFileName.Contains(normalizedTemplateName))
+                {
+                    return file;
+                }
+            }
+
             return null;
         }
     }
