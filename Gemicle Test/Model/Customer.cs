@@ -14,7 +14,5 @@ namespace Gemicle_Test.Model
         public double Deposit { get; set; }
 
         public bool IsNewCustomer { get; set; }
-
-        public int? CampaignPriority { get; set; }
     }
 }

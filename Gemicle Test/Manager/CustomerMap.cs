@@ -22,7 +22,7 @@ namespace Gemicle_Test.Manager
                 {
                     Console.WriteLine("Sending...");
                     await StartSending();
-                    await Task.Delay(TimeSpan.FromMinutes(1), token);
+                    await Task.Delay(TimeSpan.FromMinutes(30), token);
                 }
             }
             catch (TaskCanceledException)
